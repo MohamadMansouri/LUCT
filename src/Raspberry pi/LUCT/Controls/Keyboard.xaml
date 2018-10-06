@@ -1,0 +1,67 @@
+﻿<UserControl
+    x:Class="LUCT.Controls.Keyboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="#FF8AB4FF" Height="auto">
+        <StackPanel VerticalAlignment="Stretch" Height="auto">
+            <TextBlock HorizontalAlignment="Center" Text="Type some input" FontSize="24.667"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBox x:Name="inputTextField" Width="300" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+                <Button x:Name="Backspace" Content="BA" Margin="3" Tapped="Letter_Tapped"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="1" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="2" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="3" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="4" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="5" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="6" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="7" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="8" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="9" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="0" Margin="3" Tapped="Letter_Tapped"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Q" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="W" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="E" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="R" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="T" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="Y" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="U" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="I" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="O" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="P" Margin="3" Tapped="Letter_Tapped"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="A" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="S" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="D" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="F" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="G" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="H" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="J" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="K" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="L" Margin="3" Tapped="Letter_Tapped"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Z" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="X" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="C" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="V" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="B" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="N" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="M" Margin="3" Tapped="Letter_Tapped"/>
+                <Button Content="." Margin="3" Tapped="Letter_Tapped"/>
+            </StackPanel>
+            <Button x:Name="OK_Button" HorizontalAlignment="Center" Content="OK" Tapped="OK_Button_Tapped"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

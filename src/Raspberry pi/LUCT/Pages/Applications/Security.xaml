@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="LUCT.Pages.Applications.Security"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Pages.Applications"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel Background="#90CAF9">
+        <StackPanel RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Orientation="Horizontal">
+            <Button Height="250" Width="250" FontSize="60" FontFamily="SegoeUI" Background="DarkBlue" Foreground="White" Tapped="Button_Tapped" Margin="40,0">Rfid</Button>
+            <Button Height="250" Width="250" FontSize="60" FontFamily="SegoeUI" Background="DarkBlue" Foreground="White" Tapped="Button_Tapped_1" Margin="40,0">Camera</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <Image x:Name="backButton" Tapped="backButton_Tapped"  Source="../../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+            </Image>
+        </StackPanel>
+    </RelativePanel>
+</Page>

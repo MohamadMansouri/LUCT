@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="LUCT.Pages.Applications.Rfid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Pages.Applications"
+    xmlns:models="using:LUCT.Models.Database"
+    xmlns:controls="using:LUCT.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel x:Name="parent" Background="#90CAF9">
+        <RelativePanel x:Name="manage" Opacity="1" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="50">
+            <ListView x:Name="RfidData"  ItemsSource="{Binding Items}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="buttons" Margin="0,20,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Rfid">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Text="{x:Bind Text}"
+                                     GotFocus="TextBox_GotFocus"
+                               DataContext="{Binding Id}"
+                               TextChanged="TextBox_TextChanged"
+                               MaxLength="11"
+                               Margin="20,0,20,8"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               Foreground="DarkBlue"
+                               Width="300" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <StackPanel x:Name="buttons" Orientation="Horizontal" RelativePanel.AlignTopWithPanel="true" RelativePanel.AlignLeftWithPanel="True" Margin="30,30,0,0">
+                <Button x:Name="Add" Tapped="Add_Tapped" Background="DarkBlue" Foreground="White">Add Field</Button>
+                <Button x:Name="Remove" Tapped="Remove_Tapped" Background="Red" Foreground="White" Margin="20,0,0,0">Remove Field</Button>
+            </StackPanel>
+            <StackPanel x:Name="quota" Margin="30" Orientation="Vertical" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <TextBlock>Ban Quota :</TextBlock>
+                <TextBox GotFocus="TextBox_GotFocus" x:Name="banQuota" Width="300" Margin="10" ></TextBox>
+                <TextBlock>Ban Time :</TextBlock>
+                <TextBox GotFocus="TextBox_GotFocus" x:Name="banTime" Width="300" Margin="10"></TextBox>
+                <TextBlock>Keypad Password :</TextBlock>
+                <TextBox GotFocus="TextBox_GotFocus" x:Name="password" Width="300" Margin="10" MaxLength="6"></TextBox>
+                <Button x:Name="banSubmit" Tapped="banSubmit_Tapped" HorizontalAlignment="Center" Background="DarkGreen" Foreground="White">Save</Button>
+                <TextBlock x:Name="status" HorizontalAlignment="Center" Margin="20"></TextBlock>
+            </StackPanel>
+        </RelativePanel>
+        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <Image x:Name="backButton" Tapped="backButton_Tapped"  Source="../../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+            </Image>
+        </StackPanel>
+        <Popup Height="200" Width="200" x:Name="ParentedPopup" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="-95,81,95,-81" >
+            <controls:Keyboard x:Name="Keyboard"/>
+        </Popup>
+    </RelativePanel>
+</Page>

@@ -1,0 +1,162 @@
+﻿<Page
+    x:Class="LUCT.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT"
+    xmlns:models="using:LUCT.Models"
+    xmlns:base="using:LUCT"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <base:AppKeys x:Key="keys"></base:AppKeys>
+        <Storyboard x:Name="HideLockScreen">
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="1" To="0" Storyboard.TargetName="LockScreen">
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="1" To="0" Storyboard.TargetName="backButton">
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="0" To="1" Storyboard.TargetName="homeButton">
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ShowLockScreen">
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="0" To="1" Storyboard.TargetName="LockScreen">
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="0" To="1" Storyboard.TargetName="backButton">
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" From="1" To="0" Storyboard.TargetName="homeButton">
+            </DoubleAnimation>
+        </Storyboard>
+        <local:Ticker x:Key="ticker" />
+        <models:SensorsBinder x:Key="sensors"/>
+    </Page.Resources>
+    <Grid Background="#90CAF9">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="black"></Setter>
+            </Style>
+        </Grid.Resources>
+
+        <RelativePanel  Margin="40"  x:Name="LockScreen"  Opacity="0">
+
+            <StackPanel x:Name="StackPanel" RelativePanel.AlignVerticalCenterWithPanel="True"  RelativePanel.AlignHorizontalCenterWithPanel="True">
+
+
+                <TextBlock x:Name="TitleBox" Margin="0,10,0,10" FontFamily="SegoeUI" FontSize="30" TextAlignment="Center">
+                    Welcome Home!
+                </TextBlock>
+                <TextBlock x:Name="EnterPasswordBox" Margin="0,0,0,20" FontFamily="SegoeUI" FontSize="15" RelativePanel.Below="TitleBox" TextAlignment="Center">
+                    Enter your 4 pins password :
+                </TextBlock>
+                <RelativePanel >
+                    <TextBlock x:Name="PasswordStars" Margin="-20,10,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True"  TextAlignment="Center" FontSize="15">
+
+                    </TextBlock>
+                    <Image PointerReleased="Image_PointerReleased" RelativePanel.AlignRightWithPanel="True" Source="Assets/delete.png" Width="25" Height="25"></Image>
+                </RelativePanel>
+                <Grid RelativePanel.Below="PasswordStars" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center"></Setter>
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="Height" Value="30"></Setter>
+                            <Setter Property="Width" Value="30"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Margin" Value="5,10"></Setter>
+                            <Setter Property="Height" Value="60"></Setter>
+                            <Setter Property="Width" Value="60"></Setter>
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                            <Setter Property="BorderThickness" Value="2"></Setter>
+                            <Setter Property="CornerRadius" Value="30"></Setter>
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border DataContext="1"  PointerReleased="Border_PointerEntered" Grid.Row="0" Grid.Column="0">
+                        <TextBlock>1</TextBlock>
+                    </Border>
+                    <Border DataContext="2" PointerReleased="Border_PointerEntered" Grid.Row="0" Grid.Column="1">
+                        <TextBlock >2</TextBlock>
+                    </Border>
+                    <Border DataContext="3" PointerReleased="Border_PointerEntered"  Grid.Row="0" Grid.Column="2">
+                        <TextBlock>3</TextBlock>
+                    </Border>
+
+                    <Border DataContext="4" PointerReleased="Border_PointerEntered" Grid.Row="1" Grid.Column="0">
+                        <TextBlock>4</TextBlock>
+                    </Border>
+                    <Border DataContext="5" PointerReleased="Border_PointerEntered" Grid.Row="1" Grid.Column="1">
+                        <TextBlock >5</TextBlock>
+                    </Border>
+                    <Border DataContext="6" PointerReleased="Border_PointerEntered" Grid.Row="1" Grid.Column="2">
+                        <TextBlock>6</TextBlock>
+                    </Border>
+
+                    <Border DataContext="7" PointerReleased="Border_PointerEntered" Grid.Row="2" Grid.Column="0">
+                        <TextBlock>7</TextBlock>
+                    </Border>
+                    <Border DataContext="8" PointerReleased="Border_PointerEntered" Grid.Row="2" Grid.Column="1">
+                        <TextBlock >8</TextBlock>
+                    </Border>
+                    <Border DataContext="9" PointerReleased="Border_PointerEntered" Grid.Row="2" Grid.Column="2">
+                        <TextBlock>9</TextBlock>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </RelativePanel>
+        <RelativePanel  Margin="40" VerticalAlignment="Stretch" x:Name="HomeScreen">
+
+            <StackPanel x:Name="TemperatureContainer" Orientation="Horizontal" RelativePanel.AlignTopWithPanel="True" Margin="30"   VerticalAlignment="Top">
+                <Image Source="../Assets/thermometer.png" VerticalAlignment="Center" Width="60" Height="60" Margin="0,0,20,0"></Image>
+                <TextBlock x:Name="Temperature"  TextAlignment="Center" FontSize="50" Text="{Binding Source={StaticResource sensors}, Path=Temperature}"></TextBlock>
+            </StackPanel>
+            <StackPanel x:Name="HumidityContainer" Orientation="Horizontal" RelativePanel.Below="TemperatureContainer" Margin="30,10"   VerticalAlignment="Top">
+                <Image Source="../Assets/humidity.png" VerticalAlignment="Center" Width="60" Height="60" Margin="0,0,20,0"></Image>
+                <TextBlock x:Name="Humidity" TextAlignment="Center" FontSize="50" VerticalAlignment="Top" Text="{Binding Source={StaticResource sensors}, Path=Humidity}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" RelativePanel.Below="HumidityContainer" Margin="30,10"   VerticalAlignment="Top">
+                <Image Source="../Assets/Apps/Control/current.png" VerticalAlignment="Center" Width="60" Height="60" Margin="0,0,20,0"></Image>
+                <TextBlock x:Name="Current" TextAlignment="Center" FontSize="50" VerticalAlignment="Top" Text="{Binding Source={StaticResource sensors}, Path=Current}"></TextBlock>
+            </StackPanel>
+            <TextBlock x:Name="Clock" RelativePanel.AlignBottomWithPanel="True" VerticalAlignment="Bottom" Margin="10,0,0,10" FontSize="30" Text="{Binding Source={StaticResource ticker}, Path=Now}"></TextBlock>
+        </RelativePanel>
+        <RelativePanel  Margin="40">
+            <StackPanel Orientation="Vertical" RelativePanel.AlignTopWithPanel="True" Margin="30"   VerticalAlignment="Top" RelativePanel.AlignRightWithPanel="True">
+                <Image Source="../Assets/Apps/Control/pills.png" VerticalAlignment="Center" Width="60" Height="60" Margin="0,0,0,0"></Image>
+                <RadioButton HorizontalAlignment="Center" IsChecked="{Binding Source={StaticResource keys}, Path=PillState}" Margin="48,20,-48,0"></RadioButton>
+            </StackPanel>
+            <StackPanel Width="auto" Height="auto" Margin="20,20"  RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+                <RelativePanel>
+                    <Rectangle Width="30" Height="15" Margin="20,0,0,0" Fill="Black" Stroke="Black" RelativePanel.Above="conatiner"></Rectangle>
+                    <Rectangle  x:Name="conatiner" RelativePanel.AlignBottomWithPanel="True" RadiusX="20" RadiusY="20"  Stroke="Black" Fill="Black" Opacity="0.5" Width="150" Height="120"></Rectangle>
+                <Rectangle x:Name="liquid" RelativePanel.AlignBottomWithPanel="True" RadiusX="20" RadiusY="20" Stroke="Blue" Fill="LightBlue" Width="150" Height="{Binding Source={StaticResource sensors}, Path=TanksHeight}"></Rectangle>
+                    <Rectangle Width="30" Height="15" Fill="Black" RelativePanel.AlignRightWith="conatiner" Stroke="Black" RelativePanel.Below="conatiner"></Rectangle>
+                    <Rectangle Width="30" Height="15" Fill="Black" RelativePanel.AlignLeftWith="conatiner" Stroke="Black" RelativePanel.Below="conatiner"></Rectangle>
+                <TextBlock x:Name="tankIndicator" Foreground="Black" FontSize="20" RelativePanel.AlignHorizontalCenterWith="conatiner" RelativePanel.AlignVerticalCenterWith="conatiner" Text="{Binding Source={StaticResource sensors}, Path=TanksPercent}"></TextBlock>
+                </RelativePanel>
+            </StackPanel>
+        </RelativePanel>
+        <RelativePanel>
+            <StackPanel Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+                <Image x:Name="backButton" Tapped="backButton_Click" Source="../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+                </Image>
+                <Image x:Name="homeButton"  Tapped="homeButton_Tapped"  Source="../Assets/Toolbar/home.png" Margin="0,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+                </Image>
+
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>

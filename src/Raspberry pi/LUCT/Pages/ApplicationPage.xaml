@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="LUCT.Pages.ApplicationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Pages"
+    xmlns:base="using:LUCT"
+    xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
+    xmlns:controls="using:LUCT.Controls"
+    xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+    xmlns:telerikListViewCommands="using:Telerik.UI.Xaml.Controls.Data.ListView.Commands"
+    xmlns:telerikListView="using:Telerik.UI.Xaml.Controls.Data.ListView"
+    xmlns:telerikDataControls="using:Telerik.UI.Xaml.Controls.Data"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <base:AppKeys x:Key="keys"></base:AppKeys>
+    </Page.Resources>
+    
+    <!--<Page.Background>
+        <ImageBrush ImageSource="../Assets/Background.png"></ImageBrush>
+    </Page.Background>-->
+    <RelativePanel>
+        <telerikDataControls:RadListView ItemsSource="{Binding}" RelativePanel.Below="combo" VerticalAlignment="Center" Width="200" Margin="20,100"  x:Name="LeftMenuControl" HorizontalAlignment="Left">
+            <telerikDataControls:RadListView.ItemStyle>
+                <Style TargetType="telerikListView:RadListViewItem">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0.5"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Background" Value="#EEEEEE"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </telerikDataControls:RadListView.ItemStyle>
+        </telerikDataControls:RadListView>
+
+
+        
+        
+        <!--Security Application Starts-->
+        <RelativePanel x:Name="SecurityApp" Opacity="0" RelativePanel.RightOf="LeftMenuControl" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <telerikGrid:RadDataGrid x:Name="BanGrid" Opacity="0"/>
+        </RelativePanel>
+        <!--Security Application Ends-->
+        <!--Settings Application Starts-->
+        
+        <!--Settings Application Ends-->
+        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <Image x:Name="backButton" Tapped="backPageButton_Click" Source="../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+            </Image>
+        </StackPanel>
+    </RelativePanel>
+</Page>

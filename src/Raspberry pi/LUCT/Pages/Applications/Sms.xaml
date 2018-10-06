@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="LUCT.Pages.Applications.Sms"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Pages.Applications"
+    xmlns:controls="using:LUCT.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:NullToBoolConverter x:Key="nullToBoolCoverter"></local:NullToBoolConverter>
+    </Page.Resources>
+    <RelativePanel Background="#90CAF9">
+        <TextBlock x:Name="Title" FontSize="50" Foreground="Black" FontFamily="SegoeUI" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="30">
+            SMS Configuration
+        </TextBlock>
+        <StackPanel x:Name="smsed" Orientation="Horizontal" Margin="20" RelativePanel.Below="Title" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <TextBlock FontSize="20" VerticalAlignment="Center" Foreground="Black" Margin="0,7,0,6">
+                <Run Text="Enable/Disable Sms Feedback"/>
+            </TextBlock>
+            <ToggleSwitch x:Name="DisableAll" Toggled="DisableAll_Toggled" OnContent="On" OffContent="Off" Foreground="Black" Margin="40,0,0,0"/>
+        </StackPanel>
+        <StackPanel x:Name="combo" Orientation="Vertical" RelativePanel.Below="smsed" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,20,0,0">
+            <TextBlock FontSize="20" >Configure events :</TextBlock>
+            <ComboBox x:Name="comboBox"  SelectionChanged="ComboBox_SelectionChanged"  Width="200" Height="30" Margin="0,20,0,0">
+                <x:String>Temperature</x:String>
+                <x:String>Humidity</x:String>
+                <x:String>Tank Level</x:String>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="smsTemp1" Orientation="Horizontal" Margin="120,30,0,0" RelativePanel.Below="combo" RelativePanel.AlignLeftWithPanel="True">
+            <TextBlock FontSize="13" VerticalAlignment="Center" Foreground="Black">When <Run Text="{Binding Path=Variable}"></Run> is below</TextBlock>
+            <TextBox x:Name="Below" GotFocus="GotFocus" Width="30" Height="30" FontSize="13" Margin="30,0,0,0"></TextBox>
+        </StackPanel>
+        <StackPanel x:Name="smsTemp2" Orientation="Horizontal" Margin="0,30,120,0" RelativePanel.Below="combo" RelativePanel.AlignRightWithPanel="True">
+            <TextBlock FontSize="13" VerticalAlignment="Center" Foreground="Black">When <Run Text="{Binding Path=Variable}"></Run> is above</TextBlock>
+            <TextBox x:Name="Above" GotFocus="GotFocus" Width="30" Height="30" FontSize="13" Margin="30,0,0,0"></TextBox>
+        </StackPanel>
+        <StackPanel x:Name="smsDisableEventBlock" Orientation="Horizontal" Margin="48,20,-8,20" RelativePanel.Below="smsTemp2" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <TextBlock FontSize="20" VerticalAlignment="Center" Foreground="Black">Enable/Disable</TextBlock>
+            <ToggleSwitch x:Name="DisableVariable" Toggled="DisableVariable_Toggled" Foreground="Black" Margin="40,0,0,0" OnContent="On" OffContent="Off">
+            </ToggleSwitch>
+        </StackPanel>
+        <Button x:Name="Save" IsEnabled="{Binding Converter={StaticResource nullToBoolCoverter},Path=comboBox.SelectedItem}" Width="70" Height="30" FontSize="13" RelativePanel.Below="smsDisableEventBlock" RelativePanel.AlignHorizontalCenterWithPanel="True" Tapped="Button_Tapped">Save</Button>
+        <TextBlock x:Name="status" Height="30" RelativePanel.RightOf="Save" FontSize="13" RelativePanel.AlignTopWith="Save" Margin="80,0,0,0"></TextBlock>
+        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <Image x:Name="backButton" Tapped="backPageButton_Click" Source="../../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+            </Image>
+        </StackPanel>
+        <Popup Height="200" Width="200" x:Name="ParentedPopup" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="-95,81,95,-81" >
+            <controls:Keyboard x:Name="Keyboard"/>
+        </Popup>
+    </RelativePanel>
+</Page>

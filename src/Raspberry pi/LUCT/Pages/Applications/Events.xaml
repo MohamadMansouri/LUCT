@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="LUCT.Pages.Applications.Events"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LUCT.Pages.Applications"
+    xmlns:models="using:LUCT.Models.Database" 
+    xmlns:controls="using:LUCT.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel x:Name="parent" Background="#90CAF9">
+        <StackPanel x:Name="variablePanel" Margin="30,100,0,0" Orientation="Vertical" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+            <TextBlock>Select variable :</TextBlock>
+            <ComboBox x:Name="combo" HorizontalAlignment="Center" SelectionChanged="combo_SelectionChanged" Width="200" Height="30" Margin="20">
+                <x:String>Temperature</x:String>
+                <x:String>Humidity</x:String>
+                <x:String>Power Consumption</x:String>
+                <x:String>Tank Level</x:String>
+            </ComboBox>
+            <ComboBox x:Name="comboBA" HorizontalAlignment="Center" SelectionChanged="comboBA_SelectionChanged" Width="200" Height="30" Margin="0,0,0,20">
+                <x:String>Below</x:String>
+                <x:String>Above</x:String>
+            </ComboBox>
+
+            <TextBox GotFocus="TextBox_GotFocus" x:Name="textData" Width="150" Margin="0" MaxLength="3"></TextBox>
+            
+        </StackPanel>
+
+        <StackPanel x:Name="eventsPanel" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="variablePanel"  Margin="0,100,100,0">
+            <TextBlock>Events :</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">Turn on lights</TextBlock>
+                <ToggleSwitch x:Name="t0" Grid.Row="0" Grid.Column="1" Margin="20,0,0,0"></ToggleSwitch>
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">Turn on conditioner</TextBlock>
+                <ToggleSwitch x:Name="t1" Grid.Row="1" Grid.Column="1" Margin="20,0,0,0"></ToggleSwitch>
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">Turn on water pipe</TextBlock>
+                <ToggleSwitch x:Name="t2" Grid.Row="2" Grid.Column="1" Margin="20,0,0,0"></ToggleSwitch>
+                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">Shutdown System</TextBlock>
+                <ToggleSwitch x:Name="t3" Grid.Row="3" Grid.Column="1" Margin="20,0,0,0"></ToggleSwitch>
+            </Grid>
+
+            <Button x:Name="banSubmit" Tapped="banSubmit_Tapped" HorizontalAlignment="Center" Background="DarkGreen" Foreground="White" Margin="20">Save</Button>
+            <TextBlock x:Name="status" HorizontalAlignment="Center" Margin="20"></TextBlock>
+        </StackPanel>
+
+        <Button x:Name="switchPanel" Tapped="Button_Tapped" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="10">Show Saved Events</Button>
+        <ListView x:Name="eventsData"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Above="switchPanel">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Events">
+                    <GridView >
+                        <GridView.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="12"></Setter>
+                            </Style>
+                        </GridView.Resources>
+                        <TextBlock Text="{x:Bind StringVariable}" Width="90"></TextBlock>
+                        <TextBlock Text="{x:Bind StringState}"></TextBlock>
+                        <TextBlock Text="{x:Bind Value}" Width="50"></TextBlock>
+                        <TextBlock Text="{x:Bind LightsEnabled}" ></TextBlock>
+                        <TextBlock Text="{x:Bind ConditionerEnabled}"></TextBlock>
+                        <TextBlock Text="{x:Bind PipeEnabled}" ></TextBlock>
+                        <TextBlock Text="{x:Bind ShutdownEnabled}" Width="95"></TextBlock>
+                        <Button DataContext="{x:Bind Id}" Background="DarkRed" Foreground="White" Tapped="Button_Tapped_1">Delete</Button>
+                    </GridView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <Image x:Name="backButton" Tapped="backPageButton_Click" Source="../../Assets/Toolbar/back.png" Margin="10,0,0,10" HorizontalAlignment="Center" Width="40" Height="40">
+            </Image>
+        </StackPanel>
+        <Popup Height="200" Width="200" x:Name="ParentedPopup" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="-95,81,95,-81" >
+            <controls:Keyboard x:Name="Keyboard"/>
+        </Popup>
+    </RelativePanel>
+</Page>
