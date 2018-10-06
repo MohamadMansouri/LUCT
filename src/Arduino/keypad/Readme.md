@@ -1,6 +1,6 @@
 ## This Folder Contains:
 
-**Files key.cpp and Keypad.cpp**: Library file
+**Files key.cpp and Keypad.cpp**: Library files
 
 **Files Key.h and Keypad.h**: header files
 
