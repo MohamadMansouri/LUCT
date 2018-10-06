@@ -23,4 +23,4 @@ and closing of the pack. This is used for helping the old people to remember the
 * c# ( for raspberry pi that runs windows iot platform )
 * AT commands ( for gsm module )
 
-* for more details about the project refer to the report here.*
+_for more details about the project refer to the report here._
