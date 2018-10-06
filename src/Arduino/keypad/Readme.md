@@ -4,4 +4,4 @@
 
 **Files Key.h and Keypad.h**: header files
 
-**File keypad.ino**: The code installed on the first arduino to drive its work; it controls the keypad, the screen and the RFID and runs the I2C protocols. 
+**File keypad.ino**: The code installed on the first arduino to drive its work; it controls the keypad, the screen and the RFID and it drives the I2C protocols. 
